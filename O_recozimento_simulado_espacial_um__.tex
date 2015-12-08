@@ -1,0 +1,11 @@
+O recozimento simulado espacial é um método muito usado para resolver problemas de otimização nas geociências. Isto é devido, principalmente, à sua robustez contra ótimos locais e facilidade de implementação.
+It is possible to start perturbing many points and exponentially reduce the number of perturbed points. The maximum perturbation distance reduces linearly with the number of iterations. The acceptance probability also reduces exponentially with the number of iterations.
+
+estratégias de ganho em eficiência
+R is memory hungry and spatial simulated annealing is a computationally intensive method. As such, many strategies were used to reduce the computation time and memory usage: a) bottlenecks were implemented in C++, b) a finite set of candidate locations is used for perturbing the sample points, and c) data matrices are computed only once and then updated at each iteration instead of being recomputed.
+
+ferramentas de visualização
+A graphical display allows to follow how the sample pattern is being perturbed during the optimization, as well as the evolution of its energy state. 
+
+Trabalho futuro
+O pacote spsann está disponível no GitHub sob a licença  GLP Versão 2.0. It will be further developed to: a) allow the use of a cost surface, b) implement other sensitive parts of the source code in C++, c) implement other optimizing criteria, d) allow to add or delete points to/from an existing point pattern.
