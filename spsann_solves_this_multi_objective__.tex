@@ -1,0 +1,10 @@
+spsann solves this multi-objective optimization problem scaling the objective function values using their maximum absolute value or the mean value computed over 1000 random samples. Scaled values are aggregated using the weighted sum method.
+
+O spsann possui duas funções objetivas múltiplas implementadas:
+
+\begin{description}
+\item [\verb|optimACDC|] CORR + DIST, uma melhoria do método de Minasny & McBratney (2006), conhecido como amostragem condicionada no hipercubo latino (componente determinístico)
+\item [\verb|optimPAN|] ACDC + MSSD + PPL, uma tentativa de atender aos três objetivos da amostragem para o mapeamento pedométrico (componente determinístico, componente estocástico, e predição espacial)
+\end{description}
+
+O usuário também pode definir sua própria função objetiva (singular ou múltipla) e usá-la com a função \verb|optimUSER|.
