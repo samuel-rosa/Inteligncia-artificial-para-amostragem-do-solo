@@ -1,4 +1,6 @@
-Como dissemos acima, a configuração das amostras para o mapeamento pedométrico precisa atender à diversos objetivos. No spsann, esse problema de otimização multiobjetivo é formulado da seguinte forma:
+Como dissemos acima, a configuração das amostras para o mapeamento pedométrico
+precisa atender à diversos objetivos. No spsann, esse problema de otimização
+multiobjetivo é formulado da seguinte forma:
 
 \begin{equation}
 \label{eqn:multiobjetivo}
@@ -7,16 +9,42 @@ Como dissemos acima, a configuração das amostras para o mapeamento pedométric
 \end{equation}
 
 onde $\mathbf{f}(\mathbf{x})$ é um vetor onde cada elemento é uma função
-objetivo, desde 1 até \textit{k}. Como cada função objetiva resulta um valor, os elementos do vetor $\mathbf{f}(\mathbf{x})$ precisam ser agregados para formar uma única medida e, assim, resolvermos o nosso problema de otimização multiobjetivo. A agregação no spsann é feita usando o método da soma ponderada:
+objetivo, desde 1 até \textit{k}. Como cada função objetiva resulta um valor, 
+os elementos do vetor $\mathbf{f}(\mathbf{x})$ precisam ser agregados para 
+formar uma única medida e, assim, resolvermos o nosso problema de otimização
+ multiobjetivo. A agregação no spsann é feita usando o método da soma ponderada:
 
 \begin{equation}
 \label{eqn:soma}
 U = \sum_{i=1}^{k} w_if_i(\mathbf{x})
 \end{equation}
 
-onde $U$ é a chamada função utilidade, o resultado da soma dos resultados individuais de cada uma das $k$ funções objetivas multiplicadas pelos seus respectivos pesos $w$. Os pesos servem para o usuário articular suas possíveis preferências em relação à uma ou outra função objetiva. Em geral, a definição dos pesos é fundamentalmente subjetiva, dependendo da experiência do usuário. O spsann não fornece qualquer recomendação sobre a escolha dos pesos, exceto pela exigência de que sejam positivos e maiores do que zero, e que sua soma seja igual a 1. Caso não haja qualquer preferência, usa-se o mesmo peso para todas as funções objetivas.
+onde $U$ é a chamada função utilidade, o resultado da soma dos resultados 
+individuais de cada uma das $k$ funções objetivas multiplicadas pelos seus 
+respectivos pesos $w$. Os pesos servem para o usuário articular suas possíveis
+ preferências em relação à uma ou outra função objetiva. Em geral, a definição 
+dos pesos é fundamentalmente subjetiva, dependendo da experiência do usuário. O
+ spsann não fornece qualquer recomendação sobre a escolha dos pesos, exceto 
+pela exigência de que sejam positivos e maiores do que zero, e que sua soma 
+seja igual a 1. Caso não haja qualquer preferência, usa-se o mesmo peso para 
+todas as funções objetivas.
 
-A soma ponderada é o método mais usado para agregar os valores das funções objetivas em uma função utilidade. Entretanto, os valores de energia das funções objetivas costumam ter intervalos e/ou ordens de magnitude diferentes. Quando uma função objetiva produz valores de energia muito altos relativamente às outras funções objetivas, diz-se que ela possui uma dominância numérica, o que lhe dá um maior peso intrínseco na hora de calcular a função utilidade. Na prática, isso significa que a otimização está “mais preocupada” em atender àquele objetivo do que aos outros. Isso acontece, por exemplo, com o algoritmo de Minasny & McBratney (2006), usado para a otimização da configuração amostral para estimativa do componente determinístico. Naquele, a primeira função objetiva (\textit{O1}) possui dominância numérica sobre as outras duas (\textit{O2} e \textit{O3}). Isso porque os valores de energia de \textit{O1} são computados usando números inteiros (número de pontos por estrato amostral marginal). Já os valores de energia de O2 e O3 são computados usando números decimais entre 0 e 1 (proporção de pontos em cada classe amostral marginal), e -1 e 1 (coeficiente de correlação linear), respectivamente.
+A soma ponderada é o método mais usado para agregar os valores das funções 
+objetivas em uma função utilidade. Entretanto, os valores de energia das funções
+ objetivas costumam ter intervalos e/ou ordens de magnitude diferentes. Quando 
+uma função objetiva produz valores de energia muito altos relativamente às 
+outras funções objetivas, diz-se que ela possui uma dominância numérica, o que
+ lhe dá um maior peso intrínseco na hora de calcular a função utilidade. Na 
+prática, isso significa que a otimização está “mais preocupada” em atender 
+àquele objetivo do que aos outros. Isso acontece, por exemplo, com o algoritmo
+ de Minasny & McBratney (2006), usado para a otimização da configuração amostral
+ para estimativa do componente determinístico. Naquele, a primeira função 
+objetiva (\textit{O1}) possui dominância numérica sobre as outras duas 
+(\textit{O2} e \textit{O3}). Isso porque os valores de energia de \textit{O1} 
+são computados usando números inteiros (número de pontos por estrato amostral 
+marginal). Já os valores de energia de O2 e O3 são computados usando números 
+decimais entre 0 e 1 (proporção de pontos em cada classe amostral marginal), e 
+-1 e 1 (coeficiente de correlação linear), respectivamente.
 
 \begin{equation}
 \label{eqn:escalonamento}

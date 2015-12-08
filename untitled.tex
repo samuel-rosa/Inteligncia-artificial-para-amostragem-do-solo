@@ -1,43 +1,42 @@
-O mapeamento pedométrico, ou mapeamento do solo usando modelos 
-estatísticos, explora a correlação entre as propriedades do solo
-(variáveis) e as características do ambiente (covariáveis) em um 
-número finito de pontos (observações). Diferente do mapeamento 
-tradicional, onde o pedólogo vai para o campo já com um modelo de 
-variação espacial do solo, e atualiza-o a cada nova observação, no
-mapeamento pedométrico o modelo de variação espacial do solo 
-geralmente só é conhecido depois que todas as observações tenham sido
-feitas. Assim, a configuração espacial das observações precisa ser 
-ótima para identificar e estimar ambos os componentes (1) determinístico
-e (2) estocástico de variação espacial do solo, e permitir realizar 
-(3) predições espacial com a menor incerteza possível. Fazer uma 
-amostragem para atender aos três objetivos simultaneamente é um grande
-desafio, dado que para cada objetivo são necessárias configurações
-amostrais diferentes.
+\section{Introdução}
 
-Existem muitos algoritmos e programas de computador (privados e 
-públicos) para otimizar a configuração de amostras para o mapeamento
-pedométrico. Nenhum deles visa os três objetivos citados acima quando
-somos completamente ignorantes sobre o modelo de variação espacial 
-do solo. Muitos pesquisadores usam métodos tradicionais (sub-ótimos) 
-para obter observações para a calibração de modelos estatísticos para
-o mapeamento do solo. Alguns algoritmos estão disponíveis apenas em 
-artigos e livros didáticos. Talvez essa dispersão e (relativamente) 
-pequena disponibilidade estejam dificultando o seu maior uso e a 
-continuação do seu desenvolvimento.
+O mapeamento do solo usando modelos estatísticos (ou mapeamento pedométrico) 
+explora a correlação entre as propriedades do solo (variáveis) e as 
+características do ambiente (covariáveis) em um número finito de pontos 
+(observações). Diferente do mapeamento tradicional, onde o pedólogo vai para o 
+campo já com um modelo de variação espacial do solo pré-estabelecido, e 
+atualiza-o a cada nova observação, no mapeamento pedométrico o modelo de 
+variação espacial do solo geralmente só é conhecido depois que todas as 
+observações tenham sido feitas. Assim, a configuração espacial das observações 
+precisa ser ótima para identificar e estimar ambos os componentes (1) 
+determinístico e (2) estocástico de variação espacial do solo, e permitir 
+realizar (3) predições espaciais com a menor incerteza possível. Fazer uma 
+amostragem para atender aos três objetivos simultaneamente é um grande desafio,
+dado que para cada objetivo são necessárias configurações amostrais diferentes.
 
-Nesse trabalho apresentamos \textbf{spsann}, um novo pacote do R para a
-otimização da configuração amostral para o mapeamento pedométrico. 
-O R foi escolhido por ser o ambiente mais popular de processamento
-e análise de dados. Além disso, o R é um software livre e de código
-aberto, e relativamente fácil se comparado a outros ambientes 
-computacionais. A estratégia escolhida para construir o \textbf{spsann}
-foi iniciar a partir de pacotes já existentes, como
-\textbf{intamapInteractive} (Edzer Pebesma, Jon Skoien, et al.) e 
-\textbf{clhs} (Pierre Roudier). Entre as principais ferramentas usadas 
-para construir e manter o spsann estão Rstudio, \textbf{roxygen2},
-\textbf{Rcpp}, e GitHub.
+Existem muitos algoritmos e programas de computador (privados e públicos) para 
+otimizar a configuração de amostras para o mapeamento pedométrico. Nenhum deles 
+visa os três objetivos citados acima quando somos (praticamente) ignorantes 
+sobre o modelo de variação espacial do solo. Muitos pesquisadores usam métodos 
+tradicionais (sub-ótimos) para obter observações para a calibração de modelos 
+estatísticos para o mapeamento do solo. Alguns algoritmos estão disponíveis 
+apenas em artigos e livros didáticos. Talvez essa dispersão e (relativa) pequena
+disponibilidade estejam dificultando o seu maior uso e a continuação do seu 
+desenvolvimento.
 
-O projeto de desenvolvimento do spsann possui cinco componentes 
+Quero apresentar \textbf{spsann}, um novo pacote do R para a otimização da 
+configuração amostral para o mapeamento pedométrico. O R foi escolhido por ser 
+o ambiente mais popular de processamento e análise de dados. Além disso, o R é 
+um software livre e de código aberto, e relativamente fácil se comparado a 
+outros ambientes computacionais. A estratégia escolhida para construir o 
+\textbf{spsann} foi iniciar a partir de pacotes já existentes, como 
+\textbf{intamapInteractive} (Edzer Pebesma, Jon Skoien, et al.) e \textbf{clhs} 
+(Pierre Roudier). Entre as principais ferramentas usadas para construir e manter
+o \textbf{spsann} estão Rstudio, \textbf{roxygen2}, \textbf{Rcpp}, e GitHub.
+
+\section{Descrição do \textbf{spsann}}
+
+O projeto de desenvolvimento do \textbf{spsann} possui cinco componentes 
 básicos: a) as funções objetivas, b) a formulação do problema de
 otimização multiobjetivo, c) o recozimento simulado espacial, d) as
 estratégias de ganho em eficiência, e e) as ferramentas de 
